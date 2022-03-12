@@ -11,8 +11,6 @@ Information sources:
 * kaggle
 * www.ncbi.nlm.nih.gov 
 
-Presentation Slideshow link from Google Slides: https://docs.google.com/presentation/d/1a_H9tg_erpdK5rK48nga43kgBgL6CIbkTWTL4JCOmrU/edit?usp=sharing
-
 In this repo:
 * static folder
     * css

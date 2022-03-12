@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <!-- Title -->
+  <p style="color:rgb(255, 255, 255)"></p><title>From Data Scientist to Sommolier!</title></p>
+  
+  <!-- SETUP SCRIPTS -->
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="" />
+    <!-- Leaflet JavaScript code -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""></script>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- Plotly Plugin -->
+    <!--<script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+
+  
+  <!-- InLine style -->
+  
+</head>
+
+<body>
+  <!-- Create Container -->
+  <div class="container">
+    <!-- Add Jumbotron w/ Image URL -->
+    <div class="jumbotron text-center" style="background-image: url(https://piedmonttravelguide.com/wp-content/uploads/2019/06/Alba-Wine-tasting.jpg); background-size: 100%; height: 350px;">
+      <h1 class="display-4" style="color: rgb(245, 105, 238)">From Data Scientist to Sommolier!</h1>
+    </div>
+
+    
+
+    <!-- Row 1 -->
+    <div class="float-container">
+      <!-- Wine Input Section -->
+      <div class="float-child-a">
+          <h2 class="text-center" style="color: rgb(207, 131, 207)"><b>Input Your Favorite Wine’s Chem Stats To Provide Wine Quality!</b></h2>
+          <hr>
+    
+    <div class = "container">
+      <div class="col-4 col-md-4"> 
+        <div class="row">     
+          <!-- Input Form  -->
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Fixed Acidity</label>
+                  <input type="text" class="form-control" id="Fixed_Acidity" placeholder="1 to 16">
+                </div>
+        
+                <div class="form-group">
+                  <label>Volatile Acidity</label>
+                  <input class="form-control" id="Volatile_Acidity" cols="5" rows="3" placeholder=".1 to 2">
+                </div>
+
+                <div class="form-group">
+                  <label>Citric Acid</label>
+                  <input class="form-control" id="Citric_Acid" cols="30" rows="3" placeholder="0 to 2">
+                </div>
+
+                <div class="form-group">
+                  <label>Residual Sugar</label>
+                  <input class="form-control" id="Residual_Sugar" cols="30" rows="3" placeholder="0 to 70">
+                </div>
+
+                <div class="form-group">
+                  <label>Chlorides</label>
+                  <input class="form-control" id="Chlorides" cols="30" rows="3" placeholder="0 to .7">
+                </div>
+
+                <div class="form-group">
+                  <label>Free Sulfur Dioxide</label>
+                  <input class="form-control" id="Free_Sulfur_Dioxide" cols="30" rows="3" placeholder="1 to 290">
+                </div>
+
+                <div class="form-group">
+                  <label>Total Sulfur Dioxide</label>
+                  <input class="form-control" id="Total_Sulfur_Dioxide" cols="30" rows="3" placeholder="5 to 450">
+                </div>
+
+                <div class="form-group">
+                  <label>Density</label>
+                  <input class="form-control" id="Density" cols="30" rows="3" placeholder=".8 to 1.1">
+                </div>
+
+                <div class="form-group">
+                  <label>pH</label>
+                  <input class="form-control" id="pH" cols="30" rows="3" placeholder="2 to 4.1">
+                </div>
+
+                <div class="form-group">
+                  <label>Sulphates</label>
+                  <input class="form-control" id="Sulphates" cols="30" rows="3" placeholder=".2 to 2">
+                </div>
+                <div class="form-group">
+                  <label>Alcohol</label>
+                  <input class="form-control" id="Alcohol" cols="30" rows="3" placeholder="8 to 16">
+                </div>
+
+                <div class="form-group">
+                  <label>Red Wine</label>
+                  <input class="form-control" id="Red_Wine" cols="30" rows="3" placeholder="0 = no, 1 = yes">
+                </div>
+
+                <div class="form-group">
+                  <label>White Wine</label>
+                  <input class="form-control" id="White_Wine" cols="30" rows="3" placeholder="0 = no, 1 = yes">
+                </div>
+              </div> 
+
+          <!-- Submit button -->
+                <button class="btn btn-primary" id="submit" onclick="submit_message();">Submit Your Wine!</button>
+              </div>
+
+          <!-- This is where the prediction will present         -->
+              <h3>Your wine rating a prediction is:</h3>
+          <hr>
+
+          <H1><div class="text-center" style="color: red" id="rating"></div></H1>
+      </div>
+    
+      <div class="col-2 col-md-2"></div>
+     
+      
+      
+        <div class="col-6 col-md-6">
+          <div class="row">
+            <h2 class="text-center" style="color: rgb(173, 194, 173)"><b>White Wine Sample Testing</b></h2>
+          <hr>
+              <!-- dropdown fill from js file -->
+              <div class="well">
+                <h4> Product Name (samples): </h4>
+                <select id="selDataset" onchange="wineChange(this.value)"></select><hr>
+              </div>
+            
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Cultivar</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Region</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Vintage</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Alcohol (%)</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Residual Sugar</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Logistic Regression (Prediction)</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Randam Forest (Prediction)</th>
+                      <td></td>
+                    </tr>
+
+                  </tbody>  
+                </table>
+              
+            </div>
+           
+
+        </div>
+        <div class="jumbotron text-center" style="background-image: url(https://piedmonttravelguide.com/wp-content/uploads/2019/06/Alba-Wine-tasting.jpg); background-size: 100%; height: 350px;"></div>
+      </div>       
+    
+
+    
+  </div>
+
+  <!-- JavaScript -->
+  <script type="text/javascript" src="../static/js/wine.js"></script>
+    
+  
+</body>
+
+</html>
